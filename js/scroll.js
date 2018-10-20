@@ -27,7 +27,7 @@ navMenu.addEventListener('click', evt => { // ткнули в блок меню
 function scrollToElement(nodeElement) {
   let scrollDistance  = document.documentElement.scrollTop + nodeElement.getBoundingClientRect().top - navMenu.clientHeight;
   let animationID,
-      step = 10;
+      step = 1;
   
   shift();
   
@@ -38,7 +38,9 @@ function scrollToElement(nodeElement) {
     if (document.documentElement.scrollTop === scrollDistance){
       cancelAnimationFrame(animationID);
     }
-    
+  
+    // todo: add more checks for step > 1
+    // todo: add check what to do if element is not reachable by scroll (like footer)
     if (document.documentElement.scrollTop < scrollDistance){
       scrollTo(0, document.documentElement.scrollTop + step);
     }else if (document.documentElement.scrollTop > scrollDistance){
