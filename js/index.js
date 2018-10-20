@@ -29,17 +29,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
   });
   
   /////////////////  countdown timer  ///////////////////////
-  const DEADLINE = '2018-10-19'.split('-'),
+  const DEADLINE = '2017-01-19'.split('-'),
         COUNT_FROM_PAST = false; // true - считаем сколько прошло времени если DEADLINE уже прошла ;
   
   function getTimeRemaining(endMoment) {
     // через числовое объявление new Date() создаёт дату в том же часовом поясе что и Date.now(), в отличии от Date.parse
     let tmp = new Date(endMoment[0], endMoment[1]-1, endMoment[2]) - Date.now();
   
-    if (tmp < 0 && COUNT_FROM_PAST){
+    if ( COUNT_FROM_PAST && (tmp < 0) ){
       tmp = Math.abs(tmp);
-    } else {
-      tmp = '0';
+    }
+    
+    if (tmp<0){
+      tmp = 0;
     }
     
     let moments = {
